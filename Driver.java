@@ -15,6 +15,26 @@ public class Driver
 		}
 		System.out.println(theJSON);
 		
+		for(int i =0; i < theJSON.length(); i++)
+		{
+			if(theJSON.charAt(i) == '{')
+			{
+				System.out.println("JSONObject begin");
+			}
+			else if(theJSON.charAt(i) == '}')
+			{
+				System.out.println("JSONObject end");
+			}
+			else if(theJSON.charAt(i) == '[')
+			{
+				System.out.println("JSONArray begin");
+			}
+			else if(theJSON.charAt(i) == ']')
+			{
+				System.out.println("JSONArray end");
+			}
+		}
+		
 		/*
 		Room caveEntrance = new Room("The Cave Entrance");
 		Room room2 = new Room("Room #2");
