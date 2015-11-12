@@ -85,15 +85,12 @@ public class CaveParser
 			this.advanceToNextChar('{');
 			theObject = new JSONObject();
 			theObject.addVariable(this.getVariable());
-			if(this.exists(','))
+			while(this.exists(','))
 			{
 				this.advanceToNextChar(',');
 				theObject.addVariable(this.getVariable());
 			}
-			else
-			{
-				break;
-			}
+			this.advancePastNextChar('}');
 			//How do we get an unlimited number of variables? (ie 50 in our case)
 		}
 		
