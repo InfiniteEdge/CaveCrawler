@@ -6,4 +6,6 @@ public abstract class JSONVariable
 	{
 		this.name = name;
 	}
+	
+	abstract void display();
 }
