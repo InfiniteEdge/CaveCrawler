@@ -76,6 +76,10 @@ public class CaveParser
 		{
 			return "Object";
 		}
+		else if(this.theJSON.charAt(pos) == '[')
+		{
+			return "Array";
+		}
 		else
 		{
 			//I'm looking at a number
@@ -109,6 +113,26 @@ public class CaveParser
 		return Integer.parseInt(answer);
 	}
 		
+	private JSONArray getArrayValue()
+	{
+		while(this.currPos < this.theJSON.length())
+		{
+			this.advanceToNextChar('[');
+			JSONArray theArray = new JSONArray();
+			theArray.addVariable(this.getVariable());
+			
+			while(this.exists(','))
+			{
+				this.advanceToNextChar(',');
+				theArray.addVariable(this.getVariable());
+			}
+			this.advancePastNextChar(']');
+			return theArray;
+		}
+		
+		return null;
+	}
+	
 	private JSONObject getObjectValue()
 	{	
 		while(this.currPos < this.theJSON.length())
@@ -159,6 +183,11 @@ public class CaveParser
 			JSONObjectVariable theVariable = new JSONObjectVariable(name, theObject);
 			return theVariable;
 			//we need to get this into a JSONVariable now
+		}
+		else if(type.equals("Array"))
+		{
+			JSONArrayVariable theVariable = new JSONArrayVariable(name, this.getArrayValue());
+			return theVariable; 
 		}
 		else if(type.equals("Number"))
 		{
