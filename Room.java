@@ -39,15 +39,20 @@ public class Room
 	{
 		for(int i = 0; i < this.theExits.length; i++)
 		{
+			for(int j = 0; j < CaveCore.theRooms.length; j++)
+			{
+				
 			if(this.theExits[i].getName().equalsIgnoreCase(exitName))
 			{
-				this.thePlayer.displayToUser("Nice Try!!!");
-//********************
-				//write the code to actually find the Room associated with
-				//the destiantionID of this Exit and then add the player to
-				//that Room
-				//We can find our Rooms in CaveCore now!!!!
-				return true;
+				int exit = this.theExits[i].getDestinationID();
+				int room = CaveCore.theRooms[j].getId();
+				
+				if(exit == room)
+				{
+					//Add the player to that room
+				}
+			}
+			
 			}
 		}
 		return false;
