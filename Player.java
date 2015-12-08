@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 
@@ -71,7 +75,15 @@ public class Player
 		else
 		{
 			this.currentRoom.takeExit(userResponse);
-		}
+		}	
+		
+		File caveFile = new File("caveJSON.txt");
+		FileOutputStream out = null;
+		PrintStream ps;
+		ps = new PrintStream(out);
+		ps.println(CaveCore.theCave.toJSON().exportToJSON());
+		System.err.println("Write Successfully");
+		ps.close();
 		
 	}
 }
